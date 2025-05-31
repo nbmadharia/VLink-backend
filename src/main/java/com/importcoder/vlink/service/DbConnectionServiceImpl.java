@@ -54,7 +54,8 @@ public class DbConnectionServiceImpl implements DbConnectionService {
             String password = dbConnection.getPassword();
 
             Connection conn;
-            System.out.println(dbConnection.getDbType());
+//            System.out.println(dbConnection.getDbType());
+            Boolean anm = dbConnection.getDbType().equalsIgnoreCase("postgres");
             if (dbConnection.getDbType().equalsIgnoreCase("postgres")) {
                 conn = DriverManager.getConnection(url, username, password);
             } else if (dbConnection.getDbType().equalsIgnoreCase("mongodb")) {

@@ -72,7 +72,7 @@ public class DatabaseConnection {
     }
 
     public String getUrl() {
-        if ("postgresql".equalsIgnoreCase(dbType)) {
+        if ("postgres".equalsIgnoreCase(dbType)) {
             return "jdbc:postgresql://" + host + ":" + port + "/" + dbName;
         }
         // Add more db types as needed

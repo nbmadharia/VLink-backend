@@ -1,5 +1,9 @@
 package com.importcoder.vlink.controller;
 
+
+import org.springframework.http.HttpStatus;
+
+
 import com.importcoder.vlink.entity.DatabaseConnection;
 import com.importcoder.vlink.entity.User;
 import com.importcoder.vlink.repository.UserRepository;
@@ -46,10 +50,17 @@ public class DbConnectionController {
     }
 
 
-    @PostMapping("/test/{userId}/{connectionId}")
-    public ResponseEntity<String> testConnection(@PathVariable Long userId, @PathVariable Long connectionId) {
-        Optional<DatabaseConnection> connectionOpt = dbConnectionService.getConnectionById(connectionId);
+    @PostMapping("/test/{username}/{connectionId}")
+    public ResponseEntity<String> testConnection(@PathVariable String username, @PathVariable Long connectionId) {
 
+        Optional<User> userOpt = userRepository.findByUsername(username);
+        if (userOpt.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        }
+
+        Long userId = userOpt.get().getId();
+
+        Optional<DatabaseConnection> connectionOpt = dbConnectionService.getConnectionById(connectionId);
         if (connectionOpt.isEmpty()) {
             return ResponseEntity.badRequest().body("Connection not found");
         }
@@ -66,5 +77,6 @@ public class DbConnectionController {
                 ? ResponseEntity.ok("Connection successful")
                 : ResponseEntity.badRequest().body("Connection failed");
     }
+
 
 }
