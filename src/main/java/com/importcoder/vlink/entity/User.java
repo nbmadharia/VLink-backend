@@ -40,7 +40,7 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-g
+
     public Long getId() {
         return id;
     }

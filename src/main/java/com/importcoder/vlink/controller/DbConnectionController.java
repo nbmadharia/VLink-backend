@@ -78,5 +78,12 @@ public class DbConnectionController {
                 : ResponseEntity.badRequest().body("Connection failed");
     }
 
+    @PostMapping("/delete/{username}/{connectionId}")
+    public ResponseEntity<String> deleteConnection(@PathVariable String username, @PathVariable Long connectionId){
+        dbConnectionService.deleteConnection(connectionId);
+        return ResponseEntity.ok("Deleted successful");
+
+    }
+
 
 }

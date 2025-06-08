@@ -20,4 +20,6 @@ public interface DbConnectionService {
 
 
     boolean testConnection(DatabaseConnection DatabaseConnection);
+
+    void deleteConnection(Long dbConnectionId);
 }
