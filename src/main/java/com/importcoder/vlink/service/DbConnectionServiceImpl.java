@@ -73,4 +73,9 @@ public class DbConnectionServiceImpl implements DbConnectionService {
             return false;
         }
     }
+
+
+    public void deleteConnection(Long dbConnectionId){
+        dbConnectionRepository.deleteById(dbConnectionId);
+    }
 }
